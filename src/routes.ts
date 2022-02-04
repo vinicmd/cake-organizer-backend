@@ -1,4 +1,5 @@
 import { Request, Response, Router } from 'express'
+import { v4 as uuidv4 } from 'uuid'
 
 const jsonData = [
   {
@@ -58,7 +59,130 @@ const jsonData = [
     "status": "Cancelado",
   },
 ]
- const orderList = jsonData
+const orderList = jsonData
+
+const clients = [
+  {
+    id: uuidv4(),
+    name: 'Vinicius Duarte',
+    cpf: '06070117182',
+    telephone: '62981715530',
+    address: 'Rua Miguel Angelo, Jardim Planalto, Goiânia, Goiás.',
+    number: '37',
+    complement: 'quadra 23 Lote 38',
+    cep: '74333170'
+  },
+  {
+    id: uuidv4(),
+    name: 'Nathalia Cristina Garcia Costa Duarte',
+    cpf: '05994940186',
+    telephone: '62986345390',
+    address: 'Rua Miguel Angelo, Jardim Planalto, Goiânia, Goiás.',
+    number: '37',
+    complement: 'quadra 23 Lote 38',
+    cep: '74333170'
+  },
+  {
+    id: uuidv4(),
+    name: 'Nara Rubia da Paz Garcia Rosa',
+    cpf: '93725362106',
+    telephone: '62986345390',
+    address: 'Rua SB 11, Solar Bouganville, Goiânia, Goiás.',
+    number: '',
+    complement: 'quadra 20 lt 13 casa 01',
+    cep: '74393435'
+  },
+  {
+    id: uuidv4(),
+    name: 'Vinicius Duarte',
+    cpf: '06070117182',
+    telephone: '62981715530',
+    address: 'Rua Miguel Angelo, Jardim Planalto, Goiânia, Goiás.',
+    number: '37',
+    complement: 'quadra 23 Lote 38',
+    cep: '74333170'
+  },
+  {
+    id: uuidv4(),
+    name: 'Nathalia Cristina Garcia Costa Duarte',
+    cpf: '05994940186',
+    telephone: '62986345390',
+    address: 'Rua Miguel Angelo, Jardim Planalto, Goiânia, Goiás.',
+    number: '37',
+    complement: 'quadra 23 Lote 38',
+    cep: '74333170'
+  },
+  {
+    id: uuidv4(),
+    name: 'Nara Rubia da Paz Garcia Rosa',
+    cpf: '93725362106',
+    telephone: '62986345390',
+    address: 'Rua SB 11, Solar Bouganville, Goiânia, Goiás.',
+    number: '',
+    complement: 'quadra 20 lt 13 casa 01',
+    cep: '74393435'
+  },
+  {
+    id: uuidv4(),
+    name: 'Vinicius Duarte',
+    cpf: '06070117182',
+    telephone: '62981715530',
+    address: 'Rua Miguel Angelo, Jardim Planalto, Goiânia, Goiás.',
+    number: '37',
+    complement: 'quadra 23 Lote 38',
+    cep: '74333170'
+  },
+  {
+    id: uuidv4(),
+    name: 'Nathalia Cristina Garcia Costa Duarte',
+    cpf: '05994940186',
+    telephone: '62986345390',
+    address: 'Rua Miguel Angelo, Jardim Planalto, Goiânia, Goiás.',
+    number: '37',
+    complement: 'quadra 23 Lote 38',
+    cep: '74333170'
+  },
+  {
+    id: uuidv4(),
+    name: 'Nara Rubia da Paz Garcia Rosa',
+    cpf: '93725362106',
+    telephone: '62986345390',
+    address: 'Rua SB 11, Solar Bouganville, Goiânia, Goiás.',
+    number: '',
+    complement: 'quadra 20 lt 13 casa 01',
+    cep: '74393435'
+  },
+  {
+    id: uuidv4(),
+    name: 'Vinicius Duarte',
+    cpf: '06070117182',
+    telephone: '62981715530',
+    address: 'Rua Miguel Angelo, Jardim Planalto, Goiânia, Goiás.',
+    number: '37',
+    complement: 'quadra 23 Lote 38',
+    cep: '74333170'
+  },
+  {
+    id: uuidv4(),
+    name: 'Nathalia Cristina Garcia Costa Duarte',
+    cpf: '05994940186',
+    telephone: '62986345390',
+    address: 'Rua Miguel Angelo, Jardim Planalto, Goiânia, Goiás.',
+    number: '37',
+    complement: 'quadra 23 Lote 38',
+    cep: '74333170'
+  },
+  {
+    id: uuidv4(),
+    name: 'Nara Rubia da Paz Garcia Rosa',
+    cpf: '93725362106',
+    telephone: '62986345390',
+    address: 'Rua SB 11, Solar Bouganville, Goiânia, Goiás.',
+    number: '',
+    complement: 'quadra 20 lt 13 casa 01',
+    cep: '74393435'
+  },
+]
 
 const routes = Router()
 
@@ -120,6 +244,73 @@ routes.post('/orders', (request: Request, response: Response) => {
 
   return response.status(201).json(newOrder)
 })
+
+routes.delete('/orders/:id', (request: Request, response: Response) => {
+  const { id } = request.params
+  console.log(id)
+  const index = (+id) - 1
+
+  orderList.splice(index)
+  return response.status(200).json(
+    {
+      message: `O pedido número ${id} foi excluído.`
+    }
+    )
+})
+
+routes.patch('/orders/:id/cancel', (request: Request, response: Response) => {
+  const { id } = request.params
+  orderList[(+id-1)].status = 'Cancelado'
+
+  return response.status(200).json({
+    message: `O pedido número ${id} foi cancelado.`
+  })
+})
+
+routes.get('/clients', (request: Request, response: Response) => {
+  return (
+    response.status(200).json(clients)
+    //setTimeout(() => response.json(clients), 3000)
+  )
+})
+
+routes.get('/clients/:id', (request: Request, response: Response) => {
+  const { id } = request.params
+  const client = clients.find((client) => client.id === id)
+  if(client === undefined) {
+    return response.status(404).json({message: 'Client is not found.'})
+  }
+  return response.json(client)
+})
+
+routes.post('/clients', (request: Request, response: Response) => {
+  const {
+  name,
+  cpf,
+  telephone,
+  address,
+  number,
+  complement,
+  cep,
+  } = request.body
+
+  const newPerson = {
+    id: uuidv4(),
+    name,
+    cpf,
+    telephone,
+    address,
+    number,
+    complement,
+    cep,
+  }
+
+  clients.push(newPerson)
+  console.log(newPerson)
+
+  return response.status(201).json(newPerson)
+})
+
 
 export default routes
 
