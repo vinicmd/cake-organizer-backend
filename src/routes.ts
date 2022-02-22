@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 const jsonData = [
   {
     "id": 1,
-    "created_at": "01/02/2022 11:11",
+    "created_at": new Date(),
     "name": "Vinicius Duarte",
     "telephone": "62981715530",
     "address": "Rua Miguel Ângelo, 33 Jardim Planalto, Goiânia Goiás",
@@ -13,12 +13,13 @@ const jsonData = [
     "weight": 2,
     "price": 95,
     "deliveryDate": "01/02/2022",
-    "deliveryHour": "16:00",
+    "deliveryHour": "11:30",
     "status": "Entregue",
+
   },
   {
     "id": 2,
-    "created_at": "01/02/2022 11:11",
+    "created_at": new Date(),
     "name": "Vinicius Duarte",
     "telephone": "62981715530",
     "address": "Rua Miguel Ângelo, 33 Jardim Planalto, Goiânia Goiás",
@@ -27,12 +28,12 @@ const jsonData = [
     "weight": 2,
     "price": 95,
     "deliveryDate": "01/02/2022",
-    "deliveryHour": "16:30",
+    "deliveryHour": "12:00",
     "status": "Atrasado",
   },
   {
     "id": 3,
-    "created_at": "01/02/2022 11:11",
+    "created_at": new Date(),
     "name": "Vinicius Duarte",
     "telephone": "62981715530",
     "address": "Rua Miguel Ângelo, 33 Jardim Planalto, Goiânia Goiás",
@@ -46,7 +47,7 @@ const jsonData = [
   },
   {
     "id": 4,
-    "created_at": "01/02/2022 11:11",
+    "created_at": new Date(),
     "name": "Vinicius Duarte",
     "telephone": "62981715530",
     "address": "Rua Miguel Ângelo, 33 Jardim Planalto, Goiânia Goiás",
